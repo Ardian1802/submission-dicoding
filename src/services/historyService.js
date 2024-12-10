@@ -1,9 +1,17 @@
 import { Firestore } from "@google-cloud/firestore"
 import 'dotenv/config'
+const path = require('path');
 
+// Path ke file service key (pastikan path ini sesuai dengan lokasi file service_key.json Anda)
+const serviceKeyPath = path.resolve(__dirname, '../submissionmlgc-ardian-9f82c7c9feea.json');  // Mengarah ke file service_key.json
+
+// Project ID dari Google Cloud Console
+const projectId = 'submissionmlgc-ardian';  // Pastikan project ID sesuai dengan project Anda
+
+// Membuat instance Firestore dengan kredensial dan project ID
 const db = new Firestore({
-    keyFilename: 'service_key.json',
-    projectId: process.env.PROJECT_ID
+  keyFilename: serviceKeyPath,
+  projectId: projectId,
 });
 
 export const storeHistory = async ({ id, result, suggestion, createdAt }) => {
